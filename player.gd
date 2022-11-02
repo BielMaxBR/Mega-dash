@@ -93,8 +93,6 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-	#label dali de cima no canto
-	get_node(label).text = dashState 
 	# gravidade
 	velocity.y += gravity * delta
 	# qualquer tipo de dash

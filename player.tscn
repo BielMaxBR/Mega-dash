@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34.225, 30.689 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 488.919, 412.724 )
+script = ExtResource( 1 )
+label = NodePath("../Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="direita" type="Area2D" parent="."]
+position = Vector2( 26.9695, 1.49829 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="direita"]
+shape = SubResource( 3 )
+
+[node name="esquerda" type="Area2D" parent="."]
+position = Vector2( -28.0868, 1.48657 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="esquerda"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="direita" to="." method="_on_direita_body_entered"]
+[connection signal="body_exited" from="direita" to="." method="_on_direita_body_exited"]
+[connection signal="body_entered" from="esquerda" to="." method="_on_esquerda_body_entered"]
+[connection signal="body_exited" from="esquerda" to="." method="_on_esquerda_body_exited"]
